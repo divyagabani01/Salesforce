@@ -1,0 +1,6 @@
+.treegrid-scrollable {
+    max-height: 400px; /* Adjust height as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling (optional) */
+    border: 1px solid #d8dde6; /* Optional: Add a border for better visibility */
+}

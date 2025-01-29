@@ -1,0 +1,64 @@
+.id-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    border: 2px solid #4e4e4e;
+    margin: auto;
+    max-width: 800px;
+}
+
+.profile-image-container {
+    text-align: center;
+}
+
+.profile-image {
+    width: 150px;
+    height: 170px;
+    border-radius: 7%;
+    object-fit: cover;
+    border: 7px double #d8dde6;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.field-label {
+    font-weight: bold;
+    color: #5c5c5c;
+    width: 120px;
+}
+
+.field-value {
+    color: #1d1d1d;
+    font-weight: 400;
+    flex-grow: 1;
+}
+
+.slds-col {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.slds-size_4-of-12 {
+    flex: 1 1 30%; /* Left side image */
+}
+
+.slds-size_8-of-12 {
+    flex: 1 1 60%; /* Right side details */
+}
+
+.slds-grid_vertical-align-center {
+    align-items: center;
+}
+
+.slds-m-right_medium {
+    margin-right: 20px;
+}

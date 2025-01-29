@@ -1,0 +1,12 @@
+<template>
+    <div style="height: 300px;">
+        <lightning-input type="text" label="Enter some text" name="Search Account Name" value={Name}></lightning-input>
+
+            <lightning-datatable
+                    key-field="id"
+                    data={data}
+                    columns={columns}>
+            </lightning-datatable>
+
+    </div>
+</template>

@@ -1,0 +1,78 @@
+<template>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="text" label="Name" value={field.Name} data-field="Name" readonly={readOnly}
+                   onkeypress={handleKeyPress}  onchange={handleChange}>
+                </lightning-input>
+                <template lwc:if={errorMessage}>
+                    <span class="slds-form-element__help">{errorMessage}</span>
+                </template>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <!-- <lightning-textarea name="input2" label="Address" data-field="Address" value={field.Address}
+                    onkeypress={handleKeyPress} onblur={handleBlur} onchange={handleChange} class={inputClass}>
+                </lightning-textarea>
+                <template lwc:if={errorMessage}>
+                    <span class="slds-form-element__help">{errorMessage}</span>
+                </template> -->
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="text" label="Site" value={field.Site} data-field="Site" readonly={readOnly}
+                    onchange={handleChange}></lightning-input>
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="email" label="Email" value={field.Email} data-field="Email" readonly={readOnly}
+                    onchange={handleChange}></lightning-input>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="text" label="Phone" value={field.Phone} data-field="Phone" readonly={readOnly}
+                    onchange={handleChange} onkeypress={blockNonNumeric} onblur={validatePhone}></lightning-input>
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-combobox name="type" label="Type" value={field.Type} data-field="Type"
+                    placeholder="Select Type" readonly={readOnly} options={options.Type} onchange={handleChange}>
+                </lightning-combobox>
+
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-combobox name="Industry" label="Industry" value={field.Industry} data-field="Industry"
+                    readonly={readOnly} placeholder="Select Industry" options={options.Industry}
+                    onchange={handleChange}></lightning-combobox>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-combobox name="Rating" label="Rating" value={field.Rating} data-field="Rating"
+                    readonly={readOnly} placeholder="Select Industry" options={options.Rating} onchange={handleChange}>
+                </lightning-combobox>
+            </div>
+        </div>
+    </div>
+    <template lwc:if={type}>
+        <div class="slds-grid slds-wrap slds-float_right">
+            <div class="slds-col">
+                <div class="slds-p-around_medium">
+                    <lightning-button label="Save" name="Save" variant="brand" data-operation="Create"
+                        onclick={handleSubmit}></lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

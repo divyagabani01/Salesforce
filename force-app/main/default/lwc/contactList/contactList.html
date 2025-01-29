@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Contact List">
+        <!-- Display errors if there are any -->
+        <template if:true={hasError}>
+            <div class="slds-text-color_error">
+                <ul>
+                    <!-- Loop through each error and display it -->
+                    <template for:each={errors} for:item="error">
+                        <li key={error}>{error}</li>
+                    </template>
+                </ul>
+            </div>
+        </template>
+
+        <!-- Show the lightning-datatable if contacts are available -->
+        <template if:true={contacts}>
+            <lightning-datatable
+                data={contacts}
+                columns={columns}
+                key-field="id"
+                hide-checkbox-column="true">
+            </lightning-datatable>
+        </template>
+
+        <!-- Optionally, show a message if no contacts are available -->
+        <template if:false={contacts}>
+            <p>No contacts available to display.</p>
+        </template>
+    </lightning-card>
+</template>

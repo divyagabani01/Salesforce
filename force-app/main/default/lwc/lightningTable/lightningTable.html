@@ -1,0 +1,30 @@
+<template>
+    <div class="container" style="height: 300px;">
+        <div class="slds-p-left_large" style="width:500px">
+            <lightning-input type="search" label="Search Account Name" name="Name" value={searchValue}
+                onchange={handleChange} ></lightning-input>
+        </div>
+      
+        <div class="slds-p-around_x-small" style="height:240px;">
+            <div class="slds-p-top_small slds-p-horizontal_medium" style="height:240px;">
+                <template if:true={hasData}>
+                    <lightning-datatable 
+                        key-field="id" 
+                        data={tabledata}  
+                        hide-checkbox-column="true" 
+                        columns={columns}
+                        onrowaction={handleRowAction}>
+                    </lightning-datatable>
+                </template>
+                <template if:false={hasData}>
+                    <template if:false={loading}>
+                        <p>No data found</p>
+                    </template>
+                    <template if:true={loading}>
+                        <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

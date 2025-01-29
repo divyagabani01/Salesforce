@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Account Hierarchy" icon-name="standard:account">
+        <div class="slds-p-around_medium">
+            <template if:true={gridData}>
+                <div class="treegrid-scrollable">
+                    <lightning-tree-grid
+                        class="lgc-example-treegrid"
+                        columns={gridColumns}
+                        data={gridData}
+                        expanded-rows={gridExpandedRows}
+                        key-field="Id"
+                        is-loading={gridLoadingState}
+                    ></lightning-tree-grid>
+                </div>
+            </template>
+            <template if:false={gridData}>
+                <div class="slds-m-around_medium slds-text-align_center">
+                    <lightning-formatted-text value="No data available to display."></lightning-formatted-text>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

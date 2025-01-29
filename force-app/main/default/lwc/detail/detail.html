@@ -1,0 +1,24 @@
+<template>
+  <p>Record ID: {recordId}</p>
+  <template if:true={product}>
+    <div class="container">
+      <div class="slds-text-heading_small">{product.Name}</div>
+      <div class="price">{product.MSRP__c}</div>
+      <div class="description">{product.Description__c}</div>
+      <img class="product-img" src={product.Picture_URL__c} alt={product.Name} />
+      <p>
+        <lightning-badge label={product.Material__c}></lightning-badge>
+        <lightning-badge label={product.Level__c}></lightning-badge>
+      </p>
+      <p>
+        <lightning-badge label={product.Category__c}></lightning-badge>
+      </p>
+    </div>
+  </template>
+  <template if:true={error}>
+    <div class="slds-text-heading_medium">Error: {error.body.message}</div>
+  </template>
+  <template if:false={product}>
+    <div class="slds-text-heading_medium">Select a bike</div>
+  </template>
+</template>

@@ -1,0 +1,22 @@
+<!-- selector.html -->
+<template>
+    <div class="slds-m-around_medium">
+        <template if:true={userName}>
+            <h1 class="slds-text-heading_large">Hello, {userName}!</h1>
+           
+        </template>
+        <template if:true={name}>
+            <h1 class="slds-text-heading_large">Hello, {name}!</h1>
+        </template>
+        <lightning-combobox
+            name="bikes"
+            label="Select a Bike"
+            value={selectedBike}
+            placeholder="Choose a bike"
+            onchange={handleBikeChange}>
+            <option value="MountainBike">Mountain Bike</option>
+            <option value="RoadBike">Road Bike</option>
+            <option value="HybridBike">Hybrid Bike</option>
+        </lightning-combobox>
+    </div>
+</template>

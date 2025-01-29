@@ -1,0 +1,18 @@
+<template>
+    <template if:true={options}>
+            <lightning-modal-header label={options.title}></lightning-modal-header>
+            <lightning-modal-body>
+                <p>{description}</p>
+                    {value}
+                <lightning-radio-group label="Select an Option" value={value} options={options.data} name="options" type="radio" required>
+                </lightning-radio-group>
+            </lightning-modal-body>
+            <lightning-modal-footer>
+                <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                <lightning-button variant={options.variant} label={options.label} onclick={handleSave}></lightning-button>
+            </lightning-modal-footer>
+    </template>
+    <template if:false={options}>
+        <p>No options available.</p>
+    </template>
+</template>

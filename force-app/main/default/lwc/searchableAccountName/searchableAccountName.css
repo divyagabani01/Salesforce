@@ -1,0 +1,36 @@
+.slds-table_header-fixed_container{
+    max-height: fit-content;
+    height: 0 !important;
+}
+.container{
+    background-color: #f0f8ffa1;
+}
+label{
+    display: flex;
+    align-items: center;
+}
+.search-input{
+    position: relative ;
+    width: 200px;
+    margin-left: 10px;
+}
+
+.close-icon{
+    position: absolute;
+    left: 231px;
+    top: 85px;
+    cursor: pointer;
+}
+
+:host ::part(tbody) tr {
+    background-color: red;
+}
+
+:host ::part(thead) th {
+    background-color: #0070d2;
+    color: white;
+}
+
+:host ::part(tbody) tr:hover {
+    background-color: red;
+}

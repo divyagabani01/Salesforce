@@ -1,0 +1,71 @@
+<template>
+    <!-- Default/basic -->
+    <template lwc:if={isEdit}>
+        <div class="slds-float_right">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col">
+                        <lightning-button variant="base" name="cancle" label="Cancle" data-operation="cancle"
+                            icon-name="utility:clear" class="slds-p-around_small slds-m-left_x-medium"
+                            onclick={handleCancle}></lightning-button>
+                    </div>
+                <div class="slds-col">
+                    <lightning-button variant="brand" name="edit" label="Edit" data-operation="Update"
+                        icon-name="utility:edit" class="slds-p-around_small slds-m-left_x-medium"
+                        onclick={handleEdit}></lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="text" label="Name" value={Name} data-field="Name" readonly={readOnly}
+                    onchange={handleChange}></lightning-input>
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="email" label="Email" value={Email} data-field="Email" readonly={readOnly}
+                    onchange={handleChange}></lightning-input>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="text" label="Phone" value={Phone} data-field="Phone" readonly={readOnly}
+                    onchange={handleChange}></lightning-input>
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-combobox name="type" label="Type" value={Type} data-field="Type" placeholder="Select Type"
+                    readonly={readOnly} options={options.Type} onchange={handleChange}></lightning-combobox>
+
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-combobox name="Industry" label="Industry" value={Industry} data-field="Industry"
+                    readonly={readOnly} placeholder="Select Industry" options={options.Industry}
+                    onchange={handleChange}></lightning-combobox>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-combobox name="Rating" label="Rating" value={Rating} data-field="Rating" readonly={readOnly}
+                    placeholder="Select Industry" options={options.Rating} onchange={handleChange}></lightning-combobox>
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col">
+            <div class="slds-p-around_medium">
+                <lightning-button label="Save" name="Save" variant="brand" data-operation="Create"
+                    onclick={handleSubmit}></lightning-button>
+            </div>
+        </div>
+    </div>
+</template>

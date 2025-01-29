@@ -1,0 +1,21 @@
+<template>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col">
+            <c-d-create-account-form onsendaccountdetails={getAccountDetails} isreadonly={isreadonly} type={typeOfForm} accountlist={accountList}></c-d-create-account-form>
+        </div>
+    </div>
+    <div class="navigation-buttons slds-float_right">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col">
+                <!-- <button class="slds-button slds-button_neutral" onclick={handlePreviousStep}
+                    disabled={isPreviousDisabled}>
+                    Previous
+                </button> -->
+
+                <button class="slds-button slds-button_brand" onclick={handleNextStep} disabled={isNextDisabled}>
+                    Next
+                </button>
+            </div>
+        </div>
+    </div>
+</template>

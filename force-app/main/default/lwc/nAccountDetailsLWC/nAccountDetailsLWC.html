@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Account Details" icon-name="custom:custom63">
+        <template if:true={accountDetails}>
+            <p><strong>Account Name:</strong> {accountDetails.Name}</p>
+            <p><strong>Industry:</strong> {accountDetails.Industry}</p>
+            <p><strong>Phone:</strong> {accountDetails.Phone}</p>
+        </template>
+        <template if:true={error}>
+            <p class="slds-text-color_error">Error: {error}</p>
+        </template>
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+        </template>
+    </lightning-card>
+</template>

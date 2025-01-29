@@ -1,0 +1,129 @@
+<!-- <template>
+    <div class="container" style="height: 300px;">
+        <div class="slds-p-left_large" style="width:500px">
+            <lightning-input type="text" label="Search Account Name" name="Name" value={Name}
+                onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-col slds-clearfix slds-m-vertical_x-small">
+            <div class="slds-float_left ">
+                <span class="slds-badge slds-p-horizontal_small"> Total Records: {totalRecords}</span>
+            </div>
+        </div>
+        <div class="slds-p-around_x-small" style="height:500px;width:600px">
+            <div class="slds-p-top_large slds-p-horizontal_medium" style="height:300px;width:600px;">
+                <template if:true={hasData}>
+                    <lightning-datatable 
+                        key-field="id1" 
+                        data={recordsToDisplay}  
+                        hide-checkbox-column="true" 
+                        columns={columns}>
+                    </lightning-datatable>
+                </template>
+                <template if:false={hasData}>
+                    <p>No data found</p>
+                </template>
+            </div>
+            <div style="width:600px;">
+                <div class="slds-grid slds-grid_vertical-align-center slds-p-horizontal_x-small slds-grid_align-spread" >
+                    <div class="slds-col slds-align_absolute-center">
+                        <div class="slds-list_inline">
+                            <label class="text slds-text-color_weak slds-p-horizontal_xx-small" for="recordsPerPage">Page
+                                Size: </label>
+                            <div class="slds-select_container">
+                                <select class="slds-select" id="recordsPerPage" onchange={handleRecordsPerPage}>
+                                    <template for:each={pageSizeOptions} for:item="option">
+                                        <option key={option} value={option} disabled={disableNumber}>{option}</option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-align_absolute-center" style="height:3rem">
+                        <lightning-button disabled={bDisableFirst} icon-name="utility:jump_to_left" label=""
+                            class="slds-p-horizontal_xx-small" alternative-text="first page"
+                            onclick={firstPage}></lightning-button>
+                        <lightning-button disabled={bDisableFirst} icon-name="utility:chevronleft" label=""
+                            alternative-text="Previous" onclick={previousPage}></lightning-button>
+                        &nbsp;
+                        <span class="slds-badge">Showing {pageNumber} &nbsp;of&nbsp; {totalPages} &nbsp;&nbsp;Page(s)</span>
+                        &nbsp;
+                        <lightning-button disabled={bDisableLast} icon-name="utility:chevronright" label=""
+                            alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_xx-small"
+                            icon-position="right"></lightning-button>
+                        <lightning-button disabled={bDisableLast} icon-name="utility:jump_to_right" label=""
+                            alternative-text="last page" onclick={lastPage} icon-position="right"></lightning-button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</template> -->
+<template>
+    <div class="container" style="height: 500px;">
+        <div class="slds-p-left_large" style="width:500px">
+            <lightning-input type="search" label="Search Account Name" name="Name" value={searchValue}
+            onchange={handleSearch} ></lightning-input>
+        </div>
+      
+        <div class="slds-p-around_x-small" style="height:300px;">
+            <div class="slds-p-top_large slds-p-horizontal_medium" style="height:320px;">
+                <template if:true={hasData}>
+                    <lightning-datatable 
+                        key-field="id1" 
+                        data={recordData}  
+                        hide-checkbox-column="true" 
+                        columns={columns}>
+                    </lightning-datatable>
+                </template>
+                <template if:false={hasData}>
+                    <template if:false={loading}>
+                        <p>No data found</p>
+                    </template>
+                    <template if:true={loading}>
+                        <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                    </template>
+                </template>
+            </div>
+                <div class="slds-grid slds-grid_vertical-align-center slds-p-horizontal_x-small slds-grid_align-spread" >
+                    <!--RECORDS PER PAGE-->
+                    <div class="slds-col slds-align_absolute-left">
+                        <div class="slds-list_inline">
+                            <label class="text slds-text-color_weak slds-p-horizontal_xx-small" for="recordsPerPage">Page
+                                Size: </label>
+                            <div class="slds-select_container">
+                                <select class="slds-select" id="recordsPerPage" onchange={handleRecordsPerPage}>
+                                    <!-- Dynamic Options -->
+                                    <template for:each={pageSizeOptions} for:item="option">
+                                        <option key={option} value={option} disabled={disableNumber}>{option}</option>
+                                    </template>
+                                </select>
+                            </div>                   
+                        </div>
+                    </div>
+                    <!--PAGE NAVIGATION-->
+                    <div class="slds-col slds-align_absolute-center" style="height:3rem">
+                        <lightning-button disabled={bDisableFirst} icon-name="utility:jump_to_left" label=""
+                            class="slds-p-horizontal_xx-small" alternative-text="first page"
+                            onclick={firstPage}></lightning-button>
+                        <lightning-button disabled={bDisableFirst} icon-name="utility:chevronleft" label=""
+                            alternative-text="Previous" onclick={previousPage}></lightning-button>
+                        &nbsp;
+                        <span class="slds-badge">Showing {pageNumber} &nbsp;of&nbsp; {totalPages} &nbsp;&nbsp;Page(s)</span>
+                        &nbsp;
+                        <lightning-button disabled={bDisableLast} icon-name="utility:chevronright" label=""
+                            alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_xx-small"
+                            icon-position="right"></lightning-button>
+                        <lightning-button disabled={bDisableLast} icon-name="utility:jump_to_right" label=""
+                            alternative-text="last page" onclick={lastPage} icon-position="right"></lightning-button>
+                    </div>
+                    <!--TOTAL RECORDS-->
+                    <div class="slds-col slds-clearfix">
+                        <div class="slds-float_left ">
+                            <span class="slds-badge slds-p-horizontal_small"> Total Records: {totalRecords}</span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</template>

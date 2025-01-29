@@ -1,0 +1,9 @@
+<template>
+    <div class="slds-p-around_x-small">
+        <h1  class="title">Account List</h1>
+        <p class="description">Total Accounts : <lightning-badge label={data.length} class="slds-badge_inverse"></lightning-badge></p>
+    </div>
+            <div class="slds-p-around_x-small" style="height:390px;">
+                <lightning-datatable key-field="id" data={data} columns={columns}></lightning-datatable>
+            </div>
+</template>

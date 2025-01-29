@@ -1,0 +1,199 @@
+<!-- <template>
+    <div class="container">
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <h1 class="title">Hello, World!</h1>
+                <p class="description">This is a description paragraph styled with CSS.</p>
+
+                <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+                    <lightning-record-form object-api-name="objectApiName" columns="2" layout-type="full" ></lightning-record-form> 
+                   <lightning-record-form
+                    object-api-name={objectApiName}
+                    fields={fields}
+                    columns="2"
+                    onsubmit={handleSubmit}
+                >
+                </lightning-record-form> 
+                        <lightning-messages></lightning-messages>
+                        <lightning-input-field field-name="Name" value={field.Name}
+                            onchange={changeHandler}></lightning-input-field>
+                        <lightning-input-field field-name="Phone" value={field.Phone}
+                            onchange={changeHandler}></lightning-input-field>
+                        <lightning-input-field field-name="BillingStreet" value={field.BillingStreet}
+                            onchange={changeHandler}></lightning-input-field>
+                        <lightning-input-field field-name="BillingCity" value={field.BillingCity}
+                            onchange={changeHandler}></lightning-input-field>
+                        <lightning-input-field field-name="BillingState" value={field.BillingState}
+                            onchange={changeHandler}></lightning-input-field>
+                        <lightning-input-field field-name="BillingPostalCode" value={field.BillingPostalCode}
+                            onchange={changeHandler}></lightning-input-field>
+                    
+                     <div class="slds-m-around_medium">
+                        <lightning-button label="Submit" type="submit" onclick={handleSubmit}></lightning-button>
+                    </div> 
+                    <lightning-input type='text' label="Name" name="Name" value={field.Name}
+                        onchange={changeHandler}></lightning-input>
+                    <lightning-input type='text' label="Phone" name="Phone" value={field.Phone}
+                        onchange={changeHandler}></lightning-input>
+                    <lightning-input type='text' label="BillingStreet" name="BillingStreet" value={field.BillingStreet}
+                        onchange={changeHandler}></lightning-input>
+                    <lightning-input type='text' label="BillingCity" name="BillingCity" value={field.BillingCity}
+                        onchange={changeHandler}></lightning-input>
+                    <lightning-input type='text' label="BillingState" name="BillingState" value={field.BillingState}
+                        onchange={changeHandler}></lightning-input>
+                    <lightning-input type='text' label="BillingPostalCode" name="BillingPostalCode"
+                        value={field.BillingPostalCode} onchange={changeHandler}></lightning-input>
+                    <div class="slds-m-around_medium">
+                        <lightning-button label="Submit" type="button" onclick={handleSubmit}></lightning-button>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col">
+                <c-searchable-account-name></c-searchable-account-name>
+            </div>
+        </div>
+
+    </div>
+</template> -->
+<!-- <template>
+    <div class="container">
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <lightning-card title="Google Address Autocomplete">
+                    <div class="slds-m-around_medium">
+                        <lightning-input
+                            label="Enter Address"
+                            type="text"
+                            value={searchTerm}
+                            onchange={handleInputChange}>
+                        </lightning-input>
+            
+                        <div class="autocomplete-list" if:true={suggestions.length}>
+                            <template for:each={suggestions} for:item="suggestion">
+                                <div
+                                    key={suggestion.name}
+                                    class="suggestion-item"
+                                    onclick={handleSuggestionClick}>
+                                    {suggestion.name}
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </lightning-card>
+            </div>
+        </div>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <h1 class="title">Create New Account</h1>
+                <p class="description">Fill in the details below to create a new account.</p>
+
+                <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+                    <lightning-input label="Name" value={field.Name} onchange={changeHandler}
+                        data-id="Name"></lightning-input>
+                    <lightning-input label="Phone" value={field.Phone} onchange={changeHandler}
+                        data-id="Phone"></lightning-input>
+                    <lightning-input type="email" label="Email" value={field.Email} onchange={changeHandler}
+                        data-id="Email"></lightning-input>
+                    <lightning-input type="toggle" label="Active" value={field.IsActive} onchange={changeHandler}
+                        data-id="IsActive"></lightning-input>
+                    <lightning-input type="date" label="Birth Date" value={field.BirthDate} onchange={changeHandler}
+                        data-id="BirthDate"></lightning-input>
+                    <template if:true={birthDateError}>
+                        <div class="slds-text-color_error slds-m-top_x-small">{birthDateError}</div>
+                    </template>
+                    <lightning-select name="Type" label="Type of Account" data-id="Type" value={Type}
+                        options={options.Type} onchange={changeHandler} required></lightning-select>
+                    <lightning-input label="Billing Street" value={field.BillingStreet} onchange={changeHandler}
+                        data-id="BillingStreet"></lightning-input>
+                    <lightning-input label="Billing City" value={field.BillingCity} onchange={changeHandler}
+                        data-id="BillingCity"></lightning-input>
+                    <lightning-input label="Billing State" value={field.BillingState} onchange={changeHandler}
+                        data-id="BillingState"></lightning-input>
+                    <lightning-input label="Billing Postal Code" value={field.BillingPostalCode}
+                        onchange={changeHandler} data-id="BillingPostalCode"></lightning-input>
+                    <lightning-input type="file" label="Select Files to Upload" accept="image/*" multiple
+                        onchange={handleFilesSelected}></lightning-input> 
+                    <div class="file-container">
+                        Drop Zone
+                        <div class="dropzone" onclick={triggerFileInput} ondragover={handleDragOver}
+                            ondragleave={handleDragLeave} ondrop={handleDrop}>
+                            <div class="dropzone-content">
+                                <lightning-icon icon-name="utility:upload" alternative-text="Upload"
+                                    size="small"></lightning-icon>
+                                <p class="dropzone-text">Drag & drop files here or click to upload</p>
+                            </div>
+                            <input type="file" multiple accept="image/*" onchange={handleFileSelect} hidden>
+                        </div>
+
+                         Image Preview Section
+                        <div class="preview-container">
+                            <template for:each={field.files} for:item="file">
+                                <div class="preview-item" key={file.id}>
+                                    <img src={file.previewUrl} alt={file.name} class="preview-image" />
+                                     <button class="remove-btn" data-id={file.id} onclick={handleRemoveFile}>Remove</button> 
+                                    <lightning-icon class="remove-icon" icon-name="action:close"
+                                        alternative-text="close" title="close" size="xx-small" data-id={file.id}
+                                        onclick={handleRemoveFile}></lightning-icon>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div class="slds-m-around_medium">
+                        <lightning-button label="Submit" type="button" onclick={handleSubmit}></lightning-button>
+                    </div>
+                </div>
+            </div>
+
+             <div class="slds-col">
+                <c-searchable-account-name></c-searchable-account-name>
+            </div> 
+        </div>
+    </div>
+</template> -->
+
+<template>
+    <div class="container">
+        <h1 class="slds-align_absolute-center slds-p-around_small"><b>Create New Account</b></h1>
+        <p class="slds-align_absolute-center slds-p-around_small">Fill in the details below to create a new account.</p>
+        <div class=" slds-align_absolute-center">
+        <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+            <lightning-input label="Name" value={field.Name} onchange={changeHandler} data-id="Name"></lightning-input>
+            <lightning-input label="Phone" value={field.Phone} onchange={changeHandler} data-id="Phone"></lightning-input>
+            <lightning-input type="email" label="Email" value={field.Email} onchange={changeHandler} data-id="Email"></lightning-input>
+            <lightning-input type="toggle" label="Active" checked={field.IsActive} onchange={changeHandler} data-id="IsActive"></lightning-input>
+            <lightning-input type="date" label="Birth Date" value={field.BirthDate} onchange={changeHandler} data-id="BirthDate"></lightning-input>
+            <template if:true={birthDateError}>
+                <div class="slds-text-color_error slds-m-top_x-small">{birthDateError}</div>
+            </template>
+            <lightning-select label="Type of Account" data-id="Type" value={field.Type} options={options.Type} onchange={changeHandler} required></lightning-select>
+            <lightning-input label="Billing Street" value={field.BillingStreet} onchange={changeHandler} data-id="BillingStreet"></lightning-input>
+            <lightning-input label="Billing City" value={field.BillingCity} onchange={changeHandler} data-id="BillingCity"></lightning-input>
+            <lightning-input label="Billing State" value={field.BillingState} onchange={changeHandler} data-id="BillingState"></lightning-input>
+            <lightning-input label="Billing Postal Code" value={field.BillingPostalCode} onchange={changeHandler} data-id="BillingPostalCode"></lightning-input>
+
+            <!-- File Upload Section -->
+            <div class="file-container">
+                <div class="dropzone" onclick={triggerFileInput} ondragover={handleDragOver} ondragleave={handleDragLeave} ondrop={handleDrop}>
+                    <div class="dropzone-content">
+                        <lightning-icon icon-name="utility:upload" alternative-text="Upload" size="small"></lightning-icon>
+                        <p class="dropzone-text">Drag & drop files here or click to upload</p>
+                    </div>
+                    <input type="file" multiple accept="image/*" onchange={handleFileSelect} hidden>
+                </div>
+
+                <div class="preview-container">
+                    <template for:each={field.files} for:item="file">
+                        <div class="preview-item" key={file.id}>
+                            <img src={file.previewUrl} alt={file.name} class="preview-image" />
+                            <lightning-icon class="remove-icon" icon-name="action:close" alternative-text="close" title="close" size="xx-small" data-id={file.id} onclick={handleRemoveFile}></lightning-icon>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <lightning-button label="Submit" type="button" onclick={handleSubmit}></lightning-button>
+        </div>
+    </div>
+    </div>
+</template>

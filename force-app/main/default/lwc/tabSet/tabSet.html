@@ -1,0 +1,31 @@
+<template>
+    <lightning-tabset variant="scoped" active-tab-value="careteAccount">
+        <lightning-tab label="Account Details" value="accountDetails">
+            <c-data-table-with-row-action></c-data-table-with-row-action>
+        </lightning-tab>
+        <lightning-tab label="Search Account" value="searchAccount">
+            <c-searchable-account-name></c-searchable-account-name>
+        </lightning-tab>
+        <lightning-tab label="Opportunity Table" value="opportunityTable">
+            <c-opportunity-table></c-opportunity-table>
+        </lightning-tab>
+        <lightning-tab label="Google Map" value="googleMap">
+            <c-lightning-map></c-lightning-map>
+        </lightning-tab>
+        <lightning-tab label="Tree View of Account" value="treeViewofAccount">
+           <c-tree-grid></c-tree-grid>
+        </lightning-tab>
+        <lightning-tab label="Create Account" value="careteAccount">
+          <c-create-account-form></c-create-account-form>
+        </lightning-tab>
+        <lightning-tab label="Life Cycle" value="LifeCycle">
+          <c-lifecycle-example></c-lifecycle-example>
+        </lightning-tab>
+        <lightning-tab label="Image" value="Image">
+          <c-detail></c-detail>
+        </lightning-tab>
+        <lightning-tab label="LMSExample" value="LMSExample">
+          <c-lightning-message-service-example></c-lightning-message-service-example>
+        </lightning-tab>
+      </lightning-tabset>
+</template>

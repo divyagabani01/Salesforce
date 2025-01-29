@@ -1,0 +1,16 @@
+<template>
+    <div class="container">
+        <h1 class="title">Hello, World!</h1>
+            <lightning-input type='text' label="firstName"  name="firstName" value={firstName} onchange={changeHandler}></lightning-input>
+            <lightning-input type='text' label="lastName" name="lastName" value={lastName} onchange={changeHandler}></lightning-input>
+
+            <lightning-button variant="brand-outline" label="Submit"  onclick={handleSubmit} class="slds-m-around_xx-small"></lightning-button>
+
+            <template if:true={isSubmit}>
+                <br/>
+                Full Name is &nbsp;
+                <lightning-badge label={userFullName} class="slds-badge_inverse"></lightning-badge> .
+            </template>
+            
+    </div>
+</template>
