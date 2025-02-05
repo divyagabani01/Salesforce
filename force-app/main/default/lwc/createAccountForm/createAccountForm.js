@@ -80,7 +80,7 @@ export default class CreateAccountForm extends NavigationMixin(LightningElement)
             return;
         }
         try {
-            console.log('this.field :>> ', this.field);
+            console.log('this.field =======:>> ', this.field);
            const result = await InsertAccountRecord({ jsonString: JSON.stringify(this.field) });
            console.log('result ===== :>> ', result);
             if (result) {

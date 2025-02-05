@@ -1,0 +1,81 @@
+<apex:page renderAs="advanced_pdf" controller="AccountDetailsController">
+    <div style="display: flex; flex-direction: column; height: 100%;">
+        
+        <!-- Header -->
+        <div style="text-align:center; padding:10px 0;">
+            <h1 style="color:#8B0000; margin: 0;">Application Details</h1>
+            <h2 style="color:#8B0000; margin: 0;">Axis Biz Loans</h2>
+        </div>
+        
+        <!-- Content -->
+        <div style="flex-grow: 1; padding: 0 20px;">
+            
+            <div style="text-align:left; margin-top:10px;">
+                <p>Date: <apex:outputText value="{!TODAY()}"/></p>
+            </div>
+            
+            <!-- Account Details -->
+            <table border="1" style="width:100%; border-collapse: collapse; margin-top:10px;">
+                <tr style="background-color:#8B0000; color:white;text-align:center;">
+                    <th colspan="2" style="height:30px;">Account Details</th>
+                </tr>
+                <tr>
+                    <td><b>Account Name:</b></td>
+                    <td><apex:outputText value="{!acc.Name}"/></td>
+                </tr>
+                <tr>
+                    <td><b>Phone:</b></td>
+                    <td><apex:outputText value="{!acc.Phone}"/></td>
+                </tr>
+                <tr>
+                    <td><b>Website:</b></td>
+                    <td><apex:outputText value="{!acc.Website}"/></td>
+                </tr>
+                <tr>
+                    <td><b>Industry:</b></td>
+                    <td><apex:outputText value="{!acc.Industry}"/></td>
+                </tr>
+            </table>
+
+            <!-- Address Details -->
+            <table border="1" style="width:100%; border-collapse: collapse; margin-top:20px;">
+                <tr style="background-color:#8B0000; color:white;text-align:center;">
+                    <th colspan="2" style="height:30px;">Address Details</th>
+                </tr>
+                <tr>
+                    <td><b>Street:</b></td>
+                    <td><apex:outputText value="{!acc.BillingStreet}"/></td>
+                </tr>
+                <tr>
+                    <td><b>City:</b></td>
+                    <td><apex:outputText value="{!acc.BillingCity}"/></td>
+                </tr>
+                <tr>
+                    <td><b>State:</b></td>
+                    <td><apex:outputText value="{!acc.BillingState}"/></td>
+                </tr>
+                <tr>
+                    <td><b>Country:</b></td>
+                    <td><apex:outputText value="{!acc.BillingCountry}"/></td>
+                </tr>
+                <tr>
+                    <td><b>Pincode:</b></td>
+                    <td><apex:outputText value="{!acc.BillingPostalCode}"/></td>
+                </tr>
+            </table>
+
+            <!-- Image Section -->
+            <div style="text-align:center; margin-top:20px;">
+             <apex:image value="{!imageUrl}"  width="150" height="160"/>
+ 
+            </div>
+
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align:center; padding:0 0; margin-top:auto;">
+            <p><b>Confidential Document | Axis Biz Loans</b></p>
+        </div>
+        
+    </div>
+</apex:page>

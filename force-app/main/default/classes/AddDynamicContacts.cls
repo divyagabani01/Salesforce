@@ -4,6 +4,7 @@ public class AddDynamicContacts {
     @AuraEnabled
     public static Account InsertAccountRecord(String jsonString) {
         AccountWrapper account = (AccountWrapper) JSON.deserialize(jsonString, AccountWrapper.class);
+        System.debug('jsonString ====== ' + jsonString);
         Account acc = new Account();
         acc.Name = account.Name;
         acc.Phone = account.Phone;
@@ -17,7 +18,7 @@ public class AddDynamicContacts {
         acc.Account_Email__c = account.Email;
         try {
             insert acc; // Insert Account record
-           // generateAndAttachPDF(acc.Id);
+            // generateAndAttachPDF(acc.Id);
             // Handle Contacts
             //List<Contact> contactsToInsert = new List<Contact>();
             // for (Integer i = 0; i < account.NumberOfContact; i++) {
@@ -44,10 +45,31 @@ public class AddDynamicContacts {
         }
     }
     
-      public static void generateAndAttachPDF(Id recordId,String title) {
+    public static void generateAndAttachPDF(Id recordId,String title) {
         // Get the PDF content
         PageReference pdfPage = new PageReference('/apex/AxisNanoEKYCDataPDF?id=' + recordId);
         Blob pdfBlob = pdfPage.getContent();
+        // Alternatively, 
+        //PageReference pdf = Page.YourVisualforcePageName
+        
+        // potentially add any query string parameters here
+        //  pdf.getParameters().put('id',accountId);
+        
+        // the contents of the report in pdf form
+        //  Blob body;
+        
+        //  try {
+        
+        // returns the output of the page as a PDF
+        //   body = pdf.getContent();
+        // } catch (VisualforceException e) {//
+        //     body = Blob.valueOf('PDF Get Failed');
+        // }
+        // pageRef = new PageReference('/apex/Question');
+        //pageRef.setRedirect(true);
+        //pageRef.getParameters().put('question',nextQuestionId);
+        //pageRef.getParameters().put('filter',filter);
+        //pageRef.getParameters().put('questionBank',questionBankId);
         System.debug('pdfBlob ====' + pdfBlob);
         // Create ContentVersion (File)
         ContentVersion contentVer = new ContentVersion();
@@ -56,9 +78,9 @@ public class AddDynamicContacts {
         contentVer.VersionData = pdfBlob;
         contentVer.ContentLocation = 'S';
         contentVer.FirstPublishLocationId = recordId;
-          if(contentVer != null){
-              insert contentVer;
-          }
+        if(contentVer != null){
+            insert contentVer;
+        }
         
         
     }
@@ -84,8 +106,8 @@ public class AddDynamicContacts {
             // Insert ContentVersion records
             if (!contentVersions.isEmpty()) {
                 insert contentVersions;
-				System.debug('accountId' + accountId);
-				generateAndAttachPDF(accountId,contentVersions[0].Title);
+                System.debug('accountId' + accountId);
+                generateAndAttachPDF(accountId,contentVersions[0].Title);
             }
         } catch (Exception e) {
             System.debug('Error inserting ContentVersion records: ' + e.getMessage());
