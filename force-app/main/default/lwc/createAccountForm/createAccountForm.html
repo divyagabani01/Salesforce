@@ -179,7 +179,8 @@
                         <lightning-icon icon-name="utility:upload" alternative-text="Upload" size="small"></lightning-icon>
                         <p class="dropzone-text">Drag & drop files here or click to upload</p>
                     </div>
-                    <input type="file" multiple accept="image/*" onchange={handleFileSelect} hidden>
+                    <input type="file" multiple accept="image/jpeg, image/png" onchange={handleFileSelect} hidden>
+
                 </div>
 
                 <div class="preview-container">

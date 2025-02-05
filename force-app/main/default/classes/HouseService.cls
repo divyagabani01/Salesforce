@@ -12,14 +12,15 @@ public with sharing class HouseService {
                    City__c,
                    Zip__c
                    FROM House__c
+                   WITH USER_MODE
                    ORDER BY CreatedDate
                    LIMIT 10
-            ];
-            return lstHouses;
+                ];
+                  return lstHouses;
         }
         // Code to handle exception
         catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+           throw new AuraHandledException(e.getMessage());
         }
     }
 }

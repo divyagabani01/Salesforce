@@ -1,4 +1,5 @@
 import { LightningElement } from 'lwc';
+import Testing from '@salesforce/resourceUrl/Testing';
 
 export default class CarouselDemo extends LightningElement {
      carouselArr = [

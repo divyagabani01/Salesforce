@@ -80,13 +80,16 @@ export default class CreateAccountForm extends NavigationMixin(LightningElement)
             return;
         }
         try {
-            const result = await InsertAccountRecord({ jsonString: JSON.stringify(this.field) });
+            console.log('this.field :>> ', this.field);
+           const result = await InsertAccountRecord({ jsonString: JSON.stringify(this.field) });
+           console.log('result ===== :>> ', result);
             if (result) {
                 this.showToast('Success', 'Account created successfully.', 'success');
                 this.recordId = result.Id;
                 this.redirectToAccount(result.Id);
             }
         } catch (error) {
+            console.log('error :>> ', error);
             this.showToast('Error', 'There was an issue creating the account.', 'error');
         }
     }
@@ -104,7 +107,36 @@ export default class CreateAccountForm extends NavigationMixin(LightningElement)
 
     handleFileSelect(event) {
         const selectedFiles = event.target.files;
-        this.processFiles(selectedFiles);
+        this.validateAndProcessFiles(selectedFiles);
+    }
+
+    handleDrop(event) {
+        event.preventDefault();
+        event.currentTarget.classList.remove('drag-over');
+
+        const droppedFiles = event.dataTransfer.files;
+        this.validateAndProcessFiles(droppedFiles);
+    }
+
+    async validateAndProcessFiles(fileList) {
+        const validFiles = [];
+        const invalidFiles = [];
+
+        Array.from(fileList).forEach(file => {
+            if (file.type === 'image/jpeg' || file.type === 'image/png') {
+                validFiles.push(file);
+            } else {
+                invalidFiles.push(file.name);
+            }
+        });
+
+        if (invalidFiles.length > 0) {
+            this.showToast('Error', `Invalid file type: ${invalidFiles.join(', ')}`, 'error');
+        }
+
+        if (validFiles.length > 0) {
+            await this.processFiles(validFiles);
+        }
     }
 
     async processFiles(fileList) {
@@ -113,6 +145,7 @@ export default class CreateAccountForm extends NavigationMixin(LightningElement)
                 const fileId = `file-${++this.fileIdCounter}`;
                 const previewUrl = URL.createObjectURL(file);
                 const base64Data = await this.convertBlobToBase64(file);
+                console.log('this.convertBlobToBase64(file) :>> ', this.convertBlobToBase64(file));
                 return { id: fileId, name: file.name, size: file.size, type: file.type, previewUrl, base64Data };
             })
         );
@@ -133,8 +166,72 @@ export default class CreateAccountForm extends NavigationMixin(LightningElement)
         this.field.files = this.field.files.filter((file) => file.id !== fileId);
     }
 
+    handleDragOver(event) {
+        event.preventDefault();
+        event.currentTarget.classList.add('drag-over');
+    }
+
+    handleDragLeave(event) {
+        event.currentTarget.classList.remove('drag-over');
+    }
+
     showToast(title, message, variant) {
         const event = new ShowToastEvent({ title, message, variant });
         this.dispatchEvent(event);
     }
+
+
+    // handleFileSelect(event) {
+    //     const selectedFiles = event.target.files;
+    //     this.processFiles(selectedFiles);
+    // }
+
+    // async processFiles(fileList) {
+    //     const uploadedFiles = await Promise.all(
+    //         Array.from(fileList).map(async (file) => {
+    //             const fileId = `file-${++this.fileIdCounter}`;
+    //             const previewUrl = URL.createObjectURL(file);
+    //             const base64Data = await this.convertBlobToBase64(file);
+    //             return { id: fileId, name: file.name, size: file.size, type: file.type, previewUrl, base64Data };
+    //         })
+    //     );
+    //     this.field.files = [...this.field.files, ...uploadedFiles];
+    // }
+
+    // convertBlobToBase64(file) {
+    //     return new Promise((resolve, reject) => {
+    //         const reader = new FileReader();
+    //         reader.onloadend = () => resolve(reader.result.split(',')[1]);
+    //         reader.onerror = () => reject('Failed to read file');
+    //         reader.readAsDataURL(file);
+    //     });
+    // }
+
+    // handleRemoveFile(event) {
+    //     const fileId = event.target.dataset.id;
+    //     this.field.files = this.field.files.filter((file) => file.id !== fileId);
+    // }
+
+    // handleDragOver(event) {
+    //     event.preventDefault();
+    //     event.currentTarget.classList.add('drag-over');
+    // }
+
+    // handleDragLeave(event) {
+    //     event.currentTarget.classList.remove('drag-over');
+    // }
+
+    // handleDrop(event) {
+    //     event.preventDefault();
+    //     event.currentTarget.classList.remove('drag-over');
+
+    //     const files = event.dataTransfer.files;
+    //     console.log('files :>> ', files);
+    //     this.processFiles(files);
+    // }
+
+    // showToast(title, message, variant) {
+    //     const event = new ShowToastEvent({ title, message, variant });
+    //     this.dispatchEvent(event);
+    // }
 }
