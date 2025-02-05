@@ -4,7 +4,9 @@ import { LightningElement,wire } from 'lwc';
 export default class TabSet extends LightningElement {
     // subscription = null;
     // recordId;
-
+    connectedCallback() {
+        console.log('this.s ====:>> ',);
+    }
     // @wire(MessageContext)
     // messageContext;
     //  // Encapsulate logic for Lightning message service subscribe and unsubsubscribe
